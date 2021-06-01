@@ -9,6 +9,18 @@
 
     <h2> Welcome to nChan, your name is {{ author }} </h2>
     <p> This is first post </p>
+    {% if sunny %} 
+    <p> Today it is sunny </p>
+    {% else %}
+    <p> Today it is rainy </p>
+    {% endif %}
+
+    {% for post in posts %}
+        <h2> {{post.title}} </h2>
+        <h3> Author: {{post.author}} </h3>
+    {% endfor %} 
+
+
 
 </body>
 </html>

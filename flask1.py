@@ -1,3 +1,5 @@
+# Basic Hello World for Flask. Creates a server at localhost:5000
+
 from flask import Flask
 
 app = Flask(__name__)

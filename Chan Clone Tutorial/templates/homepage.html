@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html land="en">
+<head> 
+    <meta charset="UTF-8">
+    <title>nChan</title>
+</head>
+
+<body>
+
+<ul> 
+    {% for board in boards %} 
+    <li> 
+        <a href="/{{boards[0]}}"> {{board[1]}} - {{board[2]}} </a>
+    </li>
+    {% endfor %}
+
+
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+
+{% block title %}
+      <title>nChan - Submission</title>
+    {% endblock %}
+
+{% block content %} 
+<div class="container">
+<h1>
+    OK MORTY THANKS FOR THE INTEL. NOT.
+    HERE'S WHAT I GOT:
+</h1>
+
+    {% for post in posts %} 
+    <br></br>
+    {{post}}
+    {% endfor %}
+
+</div>
+{% endblock %} 

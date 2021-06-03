@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block title %}
+      <title>nChan - Web Form</title>
+    {% endblock %}
+
+{% block content %} 
+<div class="container">
+    <h2>Show me what you got</h2>
+    <br></br>
+<form action="/submit" method="POST">
+    <div class="mb-3">
+      <input type="text" class="form-control" id="exampleInputText" aria-describedby="emailHelp", placeholder="Username" name='username'>
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" id="exampleInputSubject", placeholder="Subject" name='subject'>
+    </div>
+    <div class="mb-3">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message" name='message'></textarea>
+    </div>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+  </form>
+
+</div>
+{% endblock %} 

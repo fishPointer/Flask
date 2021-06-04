@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+
+{% block title %}
+      <title>nChan - Update</title>
+    {% endblock %}
+
+{% block content %} 
+
+<h1>Update me Senpai</h1>
+    <br/>
+    <form action="/update/{{updated_name.id}}" METHOD="POST">
+    <input type="text" name="name" value="{{updated_name.name}}">
+    <input type="submit" value="Update Name" class="btn btn-secondary">
+    </form>
+
+
+
+
+{% endblock %} 

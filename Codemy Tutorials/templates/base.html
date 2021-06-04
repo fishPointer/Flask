@@ -15,7 +15,7 @@
     {% endblock %}
   </head>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{url_for('home')}}">nChan</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">/p/ - Projects</a></li>
               <li><a class="dropdown-item" href="{{ url_for('hentai') }}">/h/ - Hentai</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('posts') }}">/o/ - Posts</a></li>
               <li><a class="dropdown-item" href="{{ url_for('form') }}">Submit Form</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="http://192.168.0.193:1880/ui/#!/0?socketid=ORy9Al6z5wH2EcU3AAEx">Breadnet UI</a></li>

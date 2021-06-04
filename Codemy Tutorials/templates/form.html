@@ -5,9 +5,20 @@
     {% endblock %}
 
 {% block content %} 
+
+
 <div class="container">
     <h2>Show me what you got</h2>
     <br></br>
+
+{% if error_statement %} 
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ error_statement }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+{% endif %}
+
+
 <form action="/submit" method="POST">
     <div class="mb-3">
       <input type="text" class="form-control" id="exampleInputText" aria-describedby="emailHelp", placeholder="Username" name='username'>

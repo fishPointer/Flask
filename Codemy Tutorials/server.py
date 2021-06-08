@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chan.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test3.db'
 
 #Initalize the db
 db = SQLAlchemy(app) #pass in the flask app
@@ -14,13 +14,14 @@ db = SQLAlchemy(app) #pass in the flask app
 class Chan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(16), nullable=False)
+    #message = db.Column(db.String(16), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
     #Function to return string on db add. returns name and entry number
     def __repr__(self):
         return '<Name %r>' % self.id 
 
-
+db.create_all()
 
 
 
@@ -66,11 +67,13 @@ def posts():
 
     if request.method == "POST":
         post_name = request.form['name']
-        new_post = Chan(name=post_name)
+        new_post_username = Chan(name=post_name)
 
+        #post_message = request.form['message']
+        #new_post_message = Chan(message=post_message)
 
         try:
-            db.session.add(new_post)
+            db.session.add(new_post_username)
             db.session.commit()
             return redirect("/posts")
         except:

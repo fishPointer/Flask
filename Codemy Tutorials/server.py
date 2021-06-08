@@ -68,6 +68,7 @@ def posts():
         post_name = request.form['name']
         new_post = Chan(name=post_name)
 
+
         try:
             db.session.add(new_post)
             db.session.commit()

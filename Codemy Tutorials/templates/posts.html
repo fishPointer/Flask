@@ -10,13 +10,14 @@
     <br/>
     <form action="/posts" METHOD="POST">
     <input type="text" placeholder="Name" name="name">
-    <input type="submit" value="Add Name" class="btn btn-secondary">
+    <input type="text" placeholder="Message" name="message">
+    <input type="submit" value="Add Post" class="btn btn-secondary">
     </form>
 
     <br/>
 
     {% for chan in chans %} 
-    <h4> {{chan.name}} 
+    <h4> {{chan.name}} - {{chan.id}} - {{chan.timestamp}} :: {{chan.message}}
         <a href="/update/{{chan.id}}" class="btn btn-secondary btn-sm">Edit</a>
         <a href="/delete/{{chan.id}}" class="btn btn-danger btn-sm">Delete</a>
 

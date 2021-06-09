@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test3.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test8.db'
 
 #Initalize the db
 db = SQLAlchemy(app) #pass in the flask app
@@ -13,16 +13,34 @@ db = SQLAlchemy(app) #pass in the flask app
 #Create db model
 class Chan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(16), nullable=False)
-    #message = db.Column(db.String(16), nullable=False)
+    name = db.Column(db.String(16), default='Anonymous')
+    message = db.Column(db.String(16), nullable=False, default='hahaah')
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __init__(self, name, message):
+        self.name = name
+        self.message = message
+
+    #Function to return string on db add. returns name and entry number
+    def __repr__(self):
+        return '<Name %r>' % self.id 
+
+class aChan(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(16), default='Anonymous')
+    message = db.Column(db.String(16), nullable=False, default='hahaah')
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __init__(self, name, message):
+        self.name = name
+        self.message = message
 
     #Function to return string on db add. returns name and entry number
     def __repr__(self):
         return '<Name %r>' % self.id 
 
 db.create_all()
-
+# VERY IMPORTANT COMMAND APPARENTLY
 
 
 
@@ -65,22 +83,50 @@ def update(id):
 @app.route('/posts', methods=["POST", "GET"])
 def posts():
 
+    boardurl = '/posts'
     if request.method == "POST":
         post_name = request.form['name']
-        new_post_username = Chan(name=post_name)
+        post_message = request.form['message']
 
-        #post_message = request.form['message']
-        #new_post_message = Chan(message=post_message)
+        if not post_name:
+            post_name = 'Anonymous'
+        if not post_message:
+            return "Please Enter Message"
+        newchan = Chan(post_name, post_message)
+
 
         try:
-            db.session.add(new_post_username)
+            #db.session.add(new_post_username)
+            db.session.add(newchan)
             db.session.commit()
             return redirect("/posts")
         except:
             return "There was an error, dickweed"
     else:
         chans = Chan.query.order_by(Chan.timestamp)
-        return render_template('posts.html', chans=chans)
+        return render_template('posts.html', chans=chans, url=boardurl)
+
+@app.route('/board2', methods=["POST", "GET"])
+def board2():
+
+    boardurl = '/board2'
+    if request.method == "POST":
+        post_name = request.form['name']
+
+        post_message = request.form['message']
+        newchan = aChan(post_name, post_message)
+
+
+        try:
+            #db.session.add(new_post_username)
+            db.session.add(newchan)
+            db.session.commit()
+            return redirect("/board2")
+        except:
+            return "There was an error, dickweed2"
+    else:
+        achans = aChan.query.order_by(aChan.timestamp)
+        return render_template('posts.html', chans=achans, url=boardurl)
 
 
 
